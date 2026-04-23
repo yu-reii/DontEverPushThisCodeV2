@@ -156,7 +156,7 @@ jobs:
                 project: 'DontEverPushThisCodeV2'
                 path: '.' # scan current directory (which should be the repo root after checkout)
                 # TODO#12: which format integrates with GitHub Security tab?
-                format: 'SARIF'
+                format: 'ALL'
                 out: 'reports'
                 # TODO#13: set fail threshold — block on CVSS >= ?
                 # Hint: CVSS 7.0+ = HIGH
@@ -198,6 +198,8 @@ jobs:
 
             # TODO#16: build the Docker image tagged `my-app:latest`
             #          Hint: `docker build -t ...`
+            - name: Build docker image
+              run: docker build -t my-app:latest .
 
             - name: Trivy Scan
               uses: aquasecurity/trivy-action@master
